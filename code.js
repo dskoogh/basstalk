@@ -1,5 +1,6 @@
 // GET ELEMENTS
 var auth = firebase.auth();
+var database = firebase.database();
 var loginBtn = document.getElementById('loginBtn');
 var uploadBtn = document.getElementById('uploadBtn');
 var signOutBtn = document.getElementById('signOut');
@@ -170,23 +171,42 @@ document.getElementById('editAccountBtn').addEventListener('click', function(e){
     var lastNameBtn = document.getElementById('lastNameSpanBtn');
     var emailBtn = document.getElementById('emailSpanBtn');
 
+    var buttons = [firstNameBtn, lastNameBtn, emailBtn];
+
     console.log(auth.currentUser);
     document.getElementById('firstNameSpan').innerText = getFirstName(user);
     document.getElementById('lastNameSpan').innerText = getLastName(user);
     document.getElementById('emailSpan').innerText = user.email;
+    console.log(user.uid);
 
-    firstNameBtn.addEventListener('click', function(){
+    buttons.forEach(function(button){
+        button.addEventListener('click', function(){
+            changeDisplayAttribute(button.value);
+            focusOnInput(button);
+            document.getElementById(button.value + 'Btn').addEventListener('click', function(){
+                let dispName = document.getElementById(button.value + 'Field').value + " " + getLastName(user);
+                console.log(dispName);
+                // database.ref('users/' + user.uid).set({
+
+                // })
+            })
+        });
+    })
+
+    /*firstNameBtn.addEventListener('click', function(){
         changeDisplayAttribute(firstNameBtn.value);
+        focusOnInput(firstNameBtn);
     });
 
     lastNameBtn.addEventListener('click', function(){
-        changeDisplayAttribute(lastNameBtn.value)
+        changeDisplayAttribute(lastNameBtn.value);
+        focusOnInput(lastNameBtn);
     });
 
     emailBtn.addEventListener('click', function(){
         changeDisplayAttribute(emailBtn.value);
-        focusOnInput(emailBtn.value + 'input');
-    });
+        focusOnInput(emailBtn);
+    });*/
 
 
 });
@@ -201,9 +221,11 @@ function getUser(e){
     }
 }
 
-function focusOnInput(inputID){
+function focusOnInput(input){
+    var inputID = input.value + 'Field'
+
     console.log(inputID);
-    // document.getElementById(inputID).focus();
+    document.getElementById(inputID).focus();
 }
 
 function changeDisplayAttribute(id) {
