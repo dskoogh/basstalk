@@ -144,10 +144,10 @@ dialog {
     margin: 0;
 }
 #editAccount p:nth-child(odd) {
-    background-color: #d1d1d1;
+    background-color: #dddddd;
 }
 #editAccount p:nth-child(even) {
-    background-color: #e4e4e4;
+    background-color: #5a1515;
 }
 #editAccount span {
     color: #444444;

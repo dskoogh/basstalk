@@ -126,7 +126,6 @@ signOutBtn.addEventListener('click', function(){
 // ACCOUNT
 accountBtn.addEventListener('click', function(){
     hideEverythingBut('accountPage');
-    console.log('Account button has been clicked');
 })
 
 
@@ -173,11 +172,9 @@ document.getElementById('editAccountBtn').addEventListener('click', function(e){
 
     var buttons = [firstNameBtn, lastNameBtn, emailBtn];
 
-    console.log(auth.currentUser);
     document.getElementById('firstNameSpan').innerText = getFirstName(user);
     document.getElementById('lastNameSpan').innerText = getLastName(user);
     document.getElementById('emailSpan').innerText = user.email;
-    console.log(user.uid);
 
     buttons.forEach(function(button){
         button.addEventListener('click', function(){
@@ -185,7 +182,7 @@ document.getElementById('editAccountBtn').addEventListener('click', function(e){
             focusOnInput(button);
             document.getElementById(button.value + 'Btn').addEventListener('click', function(){
                 let dispName = document.getElementById(button.value + 'Field').value + " " + getLastName(user);
-                console.log(dispName);
+                // console.log(dispName);
                 // database.ref('users/' + user.uid).set({
 
                 // })
@@ -224,7 +221,6 @@ function getUser(e){
 function focusOnInput(input){
     var inputID = input.value + 'Field'
 
-    console.log(inputID);
     document.getElementById(inputID).focus();
 }
 
