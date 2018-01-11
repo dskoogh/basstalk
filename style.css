@@ -140,7 +140,6 @@ dialog {
     background-color: #4e4e4e;
 }
 #editAccount p {
-        
     padding: 15px;
     margin: 0;
 }
@@ -172,6 +171,11 @@ dialog {
     width: 80px;
     height: 25px;
 }
+#uploadPage {
+    position: relative;
+    top: 90px;
+    padding: 20px;
+}
 
 
 
@@ -190,6 +194,13 @@ dialog {
     height: 1000px;
     background-color: #f0f0f0;
     margin: auto;
+}
+#results h1 {
+    font-size: 35px;
+}
+#results h3 {
+    font-size: 30px;
+    color: #7e7e7e;
 }
 
 

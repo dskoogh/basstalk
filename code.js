@@ -112,7 +112,6 @@ signOutBtn.addEventListener('click', function(){
         // Sign-out successful.
         showLoggedOutBtnset();
         hideEverythingBut('message');
-        changeUser.style.top = '-400px';
 
 
     }).catch(function(error) {
@@ -158,7 +157,7 @@ homeBtn.addEventListener('click', function(){
 
 // UPLOAD PAGE
 uploadBtn.addEventListener('click', function(){
-
+    hideEverythingBut('uploadPage');
     console.log('upload track');
 });
 
@@ -177,19 +176,19 @@ document.getElementById('editAccountBtn').addEventListener('click', function(e){
     document.getElementById('emailSpan').innerText = user.email;
 
     firstNameBtn.addEventListener('click', function(){
-        changeDisplayAttribute('firstNameSpanInput');
-        document.getElementById('firstNameSpanInputField').focus();
-
-        console.log(firstNameBtn.value);
+        changeDisplayAttribute(firstNameBtn.value);
     });
 
     lastNameBtn.addEventListener('click', function(){
-        changeDisplayAttribute('lastNameSpanInput');
+        changeDisplayAttribute(lastNameBtn.value)
     });
 
     emailBtn.addEventListener('click', function(){
-        changeDisplayAttribute('emailSpanInput');
+        changeDisplayAttribute(emailBtn.value);
+        focusOnInput(emailBtn.value + 'input');
     });
+
+
 });
 
 
@@ -200,6 +199,11 @@ function getUser(e){
     if(user != null) {
         return user;
     }
+}
+
+function focusOnInput(inputID){
+    console.log(inputID);
+    // document.getElementById(inputID).focus();
 }
 
 function changeDisplayAttribute(id) {
@@ -262,6 +266,7 @@ function clearLoginForm(){
 
 function hideEverythingBut(block){
     document.getElementById('accountPage').style.display = 'none';
+    document.getElementById('uploadPage').style.display = 'none';
     document.getElementById('editAccount').style.display = 'none';
     document.getElementById('createAccountDialog').style.display = 'none';
     document.getElementById('changeUser').style.display = 'none';
