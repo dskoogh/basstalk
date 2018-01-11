@@ -1,4 +1,5 @@
 // GET ELEMENTS
+var auth = firebase.auth();
 var loginBtn = document.getElementById('loginBtn');
 var uploadBtn = document.getElementById('uploadBtn');
 var signOutBtn = document.getElementById('signOut');
@@ -6,7 +7,6 @@ var accountBtn = document.getElementById('accountBtn');
 var createAccount = document.getElementById('createAccountBtn');
 var loginDialog = document.querySelector('dialog');
 var message = document.getElementById('message');
-var auth = firebase.auth();
 var createAccountDialog = document.getElementById('createAccountDialog');
 var changeUser = document.getElementById('changeUser');
 var changeUserInfoBtn = document.getElementById('changeUserInfoBtn');
@@ -96,7 +96,7 @@ auth.onAuthStateChanged(function(user) {
             updateWelcomeMethod(user);
         } else {
             message.innerText = "";
-            changeUser.style.top = '100px';
+            changeUser.style.display = 'block';
         }
 
     } else {
@@ -217,17 +217,25 @@ function updateWelcomeMethod(user){
 }
 
 function getFirstName(user) {
-    var str = user.displayName;
+    var str = getUserDisplayName(user);
     var userFirstName = str.substring(0,str.indexOf(' '));
 
     return userFirstName;
 }
 
 function getLastName(user) {
-    var str = user.displayName;
+    var str = getUserDisplayName(user);
     var userFirstName = str.substring(str.indexOf(' ')+1, str.length);
 
     return userFirstName;
+}
+
+function getUserDisplayName(user){
+    if(user.displayName != undefined) {
+        return user.displayName;
+    } else {
+        return "";
+    }
 }
 
 function showLoggedOutBtnset(){
